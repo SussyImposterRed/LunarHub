@@ -128,6 +128,7 @@ if (checkGames(ID)) then
 		noti("Loading", "Please wait, Might take long.")
 		wait(1)
 		loadstring("https://raw.githubusercontent.com/SussyImposterRed/LunarHub/main/Main")();
+		Lunar:Destroy()
 	else
 	    TextHolder.Text = "This game isn't supported!"
 end
