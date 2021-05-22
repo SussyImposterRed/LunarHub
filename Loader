@@ -6,6 +6,7 @@ local ID = game.GameId
 
 local games = {
 	6704182071
+	5233268561
 }
 
 function checkGames(thisGame) 
