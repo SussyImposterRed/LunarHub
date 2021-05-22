@@ -10,10 +10,9 @@ local games = {
 }
 
 function checkGames(thisGame) 
-	for i = 1,#games do
-		if (string.upper(thisGame) == string.upper(games[i])) then return true end 
-	end 
-	return false 
+	if ID == 5233268561 then return true end
+	if ID == 6704182071 then return true end
+	return false
 end
 	
 function noti(title, text)
