@@ -127,7 +127,7 @@ if (checkGames(ID)) then
 		TextHolder.Text = "Supported game, loading Lunar Hub!"
 		noti("Loading", "Please wait, Might take long.")
 		wait(1)
-		loadstring("https://raw.githubusercontent.com/SussyImposterRed/LunarHub/main/Main")();
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/SussyImposterRed/LunarHub/main/Main"))();
 		Lunar:Destroy()
 	else
 	    TextHolder.Text = "This game isn't supported!"
