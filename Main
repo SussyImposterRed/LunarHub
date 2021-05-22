@@ -5,9 +5,9 @@ function l(id)
 	l1(g:HttpGet(id))
 end
 
-if g.GameId == 6704182071 then
+if g.PlaceId == 6704182071 then
 	l('https://pastebin.com/raw/MdEeisn8')
-elseif g.GameId == 5233268561 then
+elseif g.PlaceId == 5233268561 then
 	l('https://paste.ee/r/EBNx8')
 end
 
