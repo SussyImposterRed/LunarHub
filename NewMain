@@ -2,7 +2,7 @@ local l1 = loadstring
 local g = game
 
 function l(id)
-	l1(g:HttpGet(id))
+	l1(g:HttpGet(id))();
 end
 
 if g.PlaceId == 6704182071 then
