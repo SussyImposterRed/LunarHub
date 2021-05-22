@@ -2,7 +2,7 @@ if game:IsLoaded() then -- Checks if game is loaded
 
 -- Instances/Functions:
 
-local ID = game.GameId
+local ID = game.PlaceId
 
 local games = {
 	6704182071
@@ -10,9 +10,10 @@ local games = {
 }
 
 function checkGames(thisGame) 
-	if ID == 5233268561 then return true end
-	if ID == 6704182071 then return true end
-	return false
+	for i = 1,#games do
+		if (string.upper(thisGame) == string.upper(games[i])) then return true end 
+	end 
+	return false 
 end
 	
 function noti(title, text)
