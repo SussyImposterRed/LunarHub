@@ -1,5 +1,5 @@
-if game.PlaceId == 6704182071 then
-	loadstring(game:HttpGet("https://pastebin.com/raw/MdEeisn8"))();
+if game.PlaceId == 2248408710 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/SussyImposterRed/LunarHub/main/Destruction"))();
 elseif game.PlaceId == 5233268561 then
 	loadstring(game:HttpGet("https://paste.ee/r/EBNx8"))();
 end
