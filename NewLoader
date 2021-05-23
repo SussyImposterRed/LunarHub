@@ -5,7 +5,7 @@ if game:IsLoaded() then -- Checks if game is loaded
 local ID = game.PlaceId
 
 local games = {
-	6704182071,
+	2248408710,
 	5233268561
 }
 
