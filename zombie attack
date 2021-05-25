@@ -1,6 +1,6 @@
 local ReplicatedStorage = game.ReplicatedStorage
 
-function doMod(Number, Value)
+--[[function doMod(Number, Value)
     for _, GetChildren in pairs(ReplicatedStorage.Guns:GetChildren()) do
         require(ReplicatedStorage.GunData)[GetChildren.Name].Damage = tonumber(Number)
     end
@@ -24,7 +24,7 @@ function doMod(Number, Value)
     for _, GetChildren in pairs(ReplicatedStorage.Guns:GetChildren()) do
         require(ReplicatedStorage.GunData)[GetChildren.Name].BulletsPerShot = tonumber(Number)
     end
-end
+end]]
 
 function BecomeZombie()
     A_1 = "request_become_zombie"
@@ -163,11 +163,11 @@ local zombie = Divider:Button{
         BecomeZombie()
     end
 }
-
+--[[
 local gun = Divider:Button{
     Name = "Gun mods",
     Description = "Gun mods yes",
     Callback = function()
         doMod(5000, true)
     end
-}
+}]]
