@@ -6,7 +6,8 @@ local ID = game.PlaceId
 
 local games = {
 	2248408710,
-	5233268561
+	5233268561,
+	1240123653
 }
 
 function checkGames(thisGame) 
