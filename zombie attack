@@ -1,0 +1,177 @@
+local ReplicatedStorage = game.ReplicatedStorage
+_G.AutoFarm = false
+_G.AlreadyPressed = false
+
+function doMod(Number, Value)
+    for _, GetChildren in pairs(ReplicatedStorage.Guns:GetChildren()) do
+        require(ReplicatedStorage.GunData)[GetChildren.Name].Damage = tonumber(Number)
+    end
+    
+    for _, GetChildren in pairs(ReplicatedStorage.Guns:GetChildren()) do
+        require(ReplicatedStorage.GunData)[GetChildren.Name].Length = tonumber(Number)
+    end
+    
+    for _, GetChildren in pairs(ReplicatedStorage.Guns:GetChildren()) do
+        require(ReplicatedStorage.GunData)[GetChildren.Name].Firerate = tonumber(Number)
+    end
+    
+    for _, GetChildren in pairs(ReplicatedStorage.Guns:GetChildren()) do
+        require(ReplicatedStorage.GunData)[GetChildren.Name].HeadshotMultiplier = tonumber(Number)
+    end
+    
+    for _, GetChildren in pairs(ReplicatedStorage.Guns:GetChildren()) do
+            require(ReplicatedStorage.GunData)[GetChildren.Name].Automatic = Value
+    end
+    
+    for _, GetChildren in pairs(ReplicatedStorage.Guns:GetChildren()) do
+        require(ReplicatedStorage.GunData)[GetChildren.Name].BulletsPerShot = tonumber(Number)
+    end
+end
+
+function BecomeZombie()
+    A_1 = "request_become_zombie"
+    Event = game:GetService("ReplicatedStorage").RemoteEventContainer.CommunicationE
+    Event:FireServer(A_1)
+end
+
+function AutoFarm()
+    if _G.AlreadyPressed == true then
+        return
+    end
+    while wait() do
+    if _G.AutoFarm == true then
+    spawn(function()
+    for i,v in pairs(workspace.enemies:GetChildren()) do
+        for _,v in pairs(v:GetChildren()) do
+            if v.Name == "Head" and v:IsA("Part") then
+            GunTable = {
+            ["Normal"] = Vector3.new(0, 0, 0),
+            ["Direction"] = v.Position,
+            ["Name"] = workspace[game.Players.LocalPlayer.Name]:FindFirstChildOfClass("Tool").Name,
+            ["Origin"] = v.Position,
+            ["Hit"] = v,
+            ["Pos"] = v.Position
+            }
+            Event = game:GetService("ReplicatedStorage").Gun
+            Event:FireServer(GunTable)
+            end
+        end
+    end
+    end)
+    elseif _G.AutoFarm == false then
+        Print("Autofarm is disabled!")
+    end
+    end
+end
+
+function BetterAutoFarm() -- doesn't made by me
+local groundDistance = 8
+local Player = game:GetService("Players").LocalPlayer
+local function getNearest()
+local nearest, dist = nil, 99999
+for _,v in pairs(game.Workspace.BossFolder:GetChildren()) do
+if(v:FindFirstChild("Head")~=nil)then
+local m =(Player.Character.Head.Position-v.Head.Position).magnitude
+if(m<dist)then
+dist = m
+nearest = v
+end
+end
+end
+for _,v in pairs(game.Workspace.enemies:GetChildren()) do
+if(v:FindFirstChild("Head")~=nil)then
+local m =(Player.Character.Head.Position-v.Head.Position).magnitude
+if(m<dist)then
+dist = m
+nearest = v
+end
+end
+end
+return nearest
+end
+_G.farm2 = true
+Player.Chatted:Connect(function(m)
+if(m==";autofarm false")then
+_G.farm2 = false
+elseif(m==";autofarm true")then
+_G.farm2 = true
+end
+end)
+_G.globalTarget = nil
+game:GetService("RunService").RenderStepped:Connect(function()
+if(_G.farm2==true)then
+local target = getNearest()
+if(target~=nil)then
+game:GetService("Workspace").CurrentCamera.CFrame = CFrame.new(game:GetService("Workspace").CurrentCamera.CFrame.p, target.Head.Position)
+Player.Character.HumanoidRootPart.CFrame = (target.HumanoidRootPart.CFrame * CFrame.new(0, groundDistance, 9))
+_G.globalTarget = target
+end
+end
+end)
+spawn(function()
+while wait() do
+game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+game.Players.LocalPlayer.Character.Torso.Velocity = Vector3.new(0,0,0)
+end
+end)
+while wait() do
+if(_G.farm2==true and _G.globalTarget~=nil and _G.globalTarget:FindFirstChild("Head") and Player.Character:FindFirstChildOfClass("Tool"))then
+local target = _G.globalTarget
+game.ReplicatedStorage.Gun:FireServer({["Normal"] = Vector3.new(0, 0, 0), ["Direction"] = target.Head.Position, ["Name"] = Player.Character:FindFirstChildOfClass("Tool").Name, ["Hit"] = target.Head, ["Origin"] = target.Head.Position, ["Pos"] = target.Head.Position,})
+wait()
+end
+end
+end
+
+local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/AbstractPoo/Main/main/Library"))()
+
+local UI = Lib:Create{
+	Theme = "Dark", -- or "Light"
+	Size = UDim2.new(0, 555, 0, 400) -- default
+}
+
+local Main = UI:Tab{
+	Name = "Lunar Hub"
+}
+
+local Divider = Main:Divider{
+	Name = "Scripts"
+}
+
+local Autofarm = Divider:Button{
+    Name = "Auto-farm",
+    Description = "can be disabled by clicking again",
+    Callback = function()
+        if _G.AutoFarm then
+            _G.AutoFarm = false
+        elseif _G.AutoFarm == false then
+            _G.AutoFarm = true
+            _G.AlreadyPressed = true
+            AutoFarm()
+        end
+    end
+}
+
+local BAF = Divider:Button{
+    Name = "Better auto-farm",
+    Description = "doesn't made by me also say ;autofarm true/false to toggle (false = disable, true = enable)",
+    Callback = function()
+        BetterAutoFarm()
+    end
+}
+
+local zombie = Divider:Button{
+    Name = "Become zombie",
+    Description = "zombie moment",
+    Callback = function()
+        BecomeZombie()
+    end
+}
+
+local gun = Divider:Button{
+    Name = "Gun mods",
+    Description = "Gun mods yes",
+    Callback = function()
+        doMod(5000, true)
+    end
+}
