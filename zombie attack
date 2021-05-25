@@ -1,6 +1,4 @@
 local ReplicatedStorage = game.ReplicatedStorage
-_G.AutoFarm = false
-_G.AlreadyPressed = false
 
 function doMod(Number, Value)
     for _, GetChildren in pairs(ReplicatedStorage.Guns:GetChildren()) do
@@ -35,12 +33,17 @@ function BecomeZombie()
 end
 
 function AutoFarm()
-    if _G.AlreadyPressed == true then
-        return
+    _G.farm3 = true
+    Player.Chatted:Connect(function(m)
+    if(m==";autofarm2 false")then
+    _G.farm3 = false
+    elseif(m==";autofarm2 true")then
+    _G.farm3 = true
     end
+    end)
+    
     while wait() do
-    if _G.AutoFarm == true then
-    spawn(function()
+    if _G.farm3 == true then
     for i,v in pairs(workspace.enemies:GetChildren()) do
         for _,v in pairs(v:GetChildren()) do
             if v.Name == "Head" and v:IsA("Part") then
@@ -57,11 +60,8 @@ function AutoFarm()
             end
         end
     end
-    end)
-    elseif _G.AutoFarm == false then
-        Print("Autofarm is disabled!")
     end
-    end
+end
 end
 
 function BetterAutoFarm() -- doesn't made by me
@@ -123,6 +123,8 @@ end
 end
 end
 
+
+
 local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/AbstractPoo/Main/main/Library"))()
 
 local UI = Lib:Create{
@@ -142,13 +144,7 @@ local Autofarm = Divider:Button{
     Name = "Auto-farm",
     Description = "can be disabled by clicking again",
     Callback = function()
-        if _G.AutoFarm then
-            _G.AutoFarm = false
-        elseif _G.AutoFarm == false then
-            _G.AutoFarm = true
-            _G.AlreadyPressed = true
             AutoFarm()
-        end
     end
 }
 
