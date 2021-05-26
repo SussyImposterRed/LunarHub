@@ -55,7 +55,7 @@ NameShadow.Parent = Loader
 NameShadow.BackgroundColor3 = Color3.fromRGB(27, 42, 53)
 NameShadow.Size = UDim2.new(0, 444, 0, 28)
 NameShadow.Font = Enum.Font.JosefinSans
-NameShadow.Text = "Lunar Hub - Loader"
+NameShadow.Text = "troll hub - loader"
 NameShadow.TextColor3 = Color3.fromRGB(255, 255, 255)
 NameShadow.TextSize = 19.000
 NameShadow.TextWrapped = true
@@ -65,7 +65,7 @@ Logo.Parent = Loader
 Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Logo.BackgroundTransparency = 1.000
 Logo.Size = UDim2.new(0, 34, 0, 28)
-Logo.Image = "rbxassetid://6754387120"
+Logo.Image = "rbxassetid://6863132400"
 
 TextHolder.Name = "TextHolder"
 TextHolder.Parent = Loader
@@ -127,8 +127,8 @@ end
 -- Scripting:
 
 if (checkGames(ID)) then
-		TextHolder.Text = "Supported game, loading Lunar Hub!"
-		noti("Loading", "Please wait, Might take long.")
+		TextHolder.Text = "Supported game, loading troll hub!"
+		noti("Loading", "Fuck this game.")
 		wait(1)
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/SussyImposterRed/LunarHub/main/NewMain"))();
 		Lunar:Destroy()
