@@ -127,13 +127,6 @@ local meteor = Divider:Button{
     end
 }
 
-local nuke = Divider:Button{
-    Name = "Delete Nuke",
-    Description = "Press when someone try to destroy the button event",
-    Callback = function()
-        workspace:FindFirstChild("Nuke"):Destroy()
-    end
-}
 local walkspeed = Divider:Button{
     Name = "Walkspeed",
     Description = "Free Walkspeed",
