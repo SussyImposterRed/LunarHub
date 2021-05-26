@@ -1,0 +1,151 @@
+function autoWin()
+    for i,v in pairs(workspace:GetChildren()) do
+    for i,_ in pairs(v:GetChildren()) do
+    if _:IsA("Model") then
+    won = _:FindFirstChild("Win")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = won.CFrame
+    end
+end
+end
+end
+
+function shoot()
+    game:GetService("ReplicatedStorage").SuccRemotes.Suco:FireServer()
+end
+
+function click(lol)
+    fireclickdetector(lol)
+end
+
+function touch(lol)
+    firetouchinterest(lol)
+end
+
+function give(i, o)
+    if i == "jump" then
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = o
+    elseif i == "walk" then
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = o
+    end
+end
+
+local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/AbstractPoo/Main/main/Library"))()
+
+local UI = Lib:Create{
+	Theme = "Dark", -- or "Light"
+	Size = UDim2.new(0, 555, 0, 400) -- default
+}
+
+local Main = UI:Tab{
+	Name = "Lunar Hub"
+}
+
+local Divider = Main:Divider{
+	Name = "Scripts"
+}
+
+local win = Divider:Button{
+    Name = "Obby/Maze Auto-win",
+    Description = "free badge/tools",
+    Callback = function()
+        autoWin()
+    end
+}
+
+local get = Divider:Button{
+    Name = "Get To Present",
+    Description = "free coins",
+    Callback = function()
+    for i,v in pairs(workspace:GetChildren()) do
+    if v.Name == "CoinPresent" then
+    for i,_ in pairs(v:GetChildren()) do
+    if _:IsA("Part") then
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = _.CFrame
+    end
+    end
+    end
+    end
+    end
+}
+
+local coin = Divider:Button{
+    Name = "Get to coin",
+    Description = "Coins yes",
+    Callback = function()
+    for i,v in pairs(workspace:GetChildren()) do
+        if v.Name == "OneCoin" or "ThreeCoin" or "TwoCoin" or "FourCoin" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+        end
+    end
+end
+}
+
+local frwin = Divider:Button{
+    Name = "Give Obby/Maze Tool",
+    Description = "free tools",
+    Callback = function()
+        for i,v in pairs(workspace:GetChildren()) do
+    for i,_ in pairs(v:GetChildren()) do
+    if _:IsA("Model") then
+    won = _:FindFirstChild("Win")
+    touch(won.TouchInterest)
+    end
+    end
+    end
+    end
+}
+
+local click = Divider:Button{
+    Name = "Click Button",
+    Description = "button",
+    Callback = function()
+        click(game:GetService("Workspace").TheButton.Press.ClickDetector)
+    end
+}
+
+local gun = Divider:Button{
+    Name = "FE Gun",
+    Description = "Press E to shoot",
+    Callback = function()
+        game:GetService("UserInputService").InputBegan:Connect(function(input, g) if g == false and input.KeyCode == Enum.KeyCode.E then shoot() end end)
+    end
+}
+
+local nuke = Divider:Button{
+    Name = "Delete Nuke",
+    Description = "Press when someone try to destroy the button event",
+    Callback = function()
+        workspace:FindFirstChild("Nuke"):Destroy()
+    end
+}
+
+local meteor = Divider:Button{
+    Name = "Delete Meteor",
+    Description = "Delete Meteor Shower Event",
+    Callback = function()
+        workspace:FindFirstChild("MeteorShower"):Destroy()
+    end
+}
+
+local nuke = Divider:Button{
+    Name = "Delete Nuke",
+    Description = "Press when someone try to destroy the button event",
+    Callback = function()
+        workspace:FindFirstChild("Nuke"):Destroy()
+    end
+}
+local walkspeed = Divider:Button{
+    Name = "Walkspeed",
+    Description = "Free Walkspeed",
+    Callback = function()
+        give("walk", 100)
+    end
+}
+
+local jumppower = Divider:Button{
+    Name = "Jumppower",
+    Description = "Free Jumppower",
+    Callback = function()
+        give("jump", 100)
+    end
+}
