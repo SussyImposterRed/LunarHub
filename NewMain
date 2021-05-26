@@ -4,4 +4,6 @@ elseif game.PlaceId == 5233268561 then
 	loadstring(game:HttpGet("https://paste.ee/r/EBNx8"))();
 elseif game.PlaceId == 1240123653 then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/SussyImposterRed/LunarHub/main/zombie%20attack"))();
+elseif game.PlaceId == 5235969581 then
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/SussyImposterRed/LunarHub/main/thebutton"))();
 end
