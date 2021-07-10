@@ -15,10 +15,14 @@ DarkContrast = Color3.fromRGB(14, 14, 14),
 TextColor = Color3.fromRGB(255, 255, 255)
 }
 
+-- variables
 local IPC = false
 local OH = false
 local farming = false
 local TargetDistance = 1000
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local X, Y = 0, 0
+
 
 -- first page
 local page = sex:addPage("Main", 5012544693)
@@ -113,12 +117,18 @@ local function GetClosest()
     return Target
 end
 
+function click()
+VirtualInputManager:SendMouseButtonEvent(X, Y, 0, true, game, 1)
+VirtualInputManager:SendMouseButtonEvent(X, Y, 0, false, game, 1)
+end
+
 local IsParried = game.Players.LocalPlayer.SessionData.IsStunned.Value
 
 game:GetService('RunService').RenderStepped:connect(function()
     if farming == true then
     if IsParried == false and GetClosest().SessionData.IsParrying.Value == false and not OH and IPC then
     game.Players.LocalPlayer.Character.Humanoid.HipHeight = 0
+    click()
     local target = GetClosest()
     LocalPlayer.Character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame
     elseif IsParried then
